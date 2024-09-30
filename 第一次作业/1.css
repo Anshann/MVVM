@@ -1,0 +1,66 @@
+.box{
+    width: 56%;
+    padding-left: 22%;
+    padding-right: 22%;
+}
+.biaoti {
+    color:black;
+    font-size:30px;
+    font-weight:bold;
+    text-align: center;
+}
+img{
+    width: 110px;
+}
+.father{
+    position: relative;
+}
+.img-it{
+    position: absolute;
+    top: -45px;
+    left: 730px;
+}
+.top{
+    color:grey;
+}
+.top-1{
+ padding-top: 10px;
+}
+.xiaobiaoti{
+    margin-top: 0px;
+    color:#11B6D0;
+    font-size:18px;
+    font-weight:bold;
+}
+.smallbiaoti{
+    color:black;
+    font-weight:bold;
+    position: relative;
+}
+.dazhenwen{
+    color:gray;
+    font-weight:bold;
+}
+.mid{
+    text-align: center;
+}
+.zhenwen{
+    color:grey;
+    margin-bottom: -15px;
+}
+ul li::marker{
+    color:grey;
+}
+.date{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.ul-position li{
+    margin-left: -20px ;
+    margin-top: 0px;
+    line-height: 1.6;
+}
+.zhenwen-line{
+    line-height: 1.6;
+}
