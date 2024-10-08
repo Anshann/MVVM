@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态更新和删除列表项 </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 500px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .input-content {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>动态列表管理</h1>
+    <ul id="myList"></ul>
+    <div class = "input-content">
+        <input type="text" id="itemInput" placeholder="新项">
+        <button id="addItem">添加项</button>
+    </div>
+</body>
+<script>
+    let btn_ele=document.getElementById('addItem');
+    
+    btn_ele.addEventListener('click',function(){
+      let item = document.getElementById('itemInput').value;
+      let list = document.getElementById('myList');
+    
+      // 创建新的列表项和按钮
+      let listItem = document.createElement('li');
+      let editButton = document.createElement('button');
+      let deleteButton = document.createElement('button');
+    
+      // 设置按钮的文本和操作
+      editButton.innerHTML = '编辑';
+      deleteButton.innerHTML = '删除';
+  
+      editButton.onclick = function() {
+        let newValue = prompt('请输入新的值：', item);
+        if (newValue) {
+          listItem.textContent = newValue;
+          listItem.append(editButton, deleteButton);
+        }
+      };
+  
+      deleteButton.onclick = function() {
+        list.removeChild(listItem);
+      };
+    
+      // 添加文本和按钮到列表项
+      listItem.textContent = item;
+      listItem.append(editButton, deleteButton);
+    
+      // 添加列表项到列表
+      list.append(listItem);
+    
+      // 清空输入框
+      document.getElementById('itemInput').value = '';
+    });
+</script>
+</html>

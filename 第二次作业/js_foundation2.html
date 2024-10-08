@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格数据排序</title>
+    <style>
+      table {
+        width: 50%;
+        margin-top: 20px;
+        border: 1px solid #ddd;
+      }
+    
+      th {
+        background-color: #dfeefd;
+      }
+    
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+      }
+    
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      
+      .add-button{
+        margin-top: 20px;
+      }
+    </style>
+</head>
+<body>
+    <table id="myTable">
+        <tr>
+          <th>姓名</th>
+          <th>年龄</th>
+          <th>操作</th>
+        </tr>
+      </table>
+      <input type="text" id="nameInput" placeholder="姓名" />
+      <input type="number" id="ageInput" placeholder="年龄" />
+      <button id="addRow"class="add-button">添加数据</button>
+</body>
+<script>
+  let table = document.getElementById('myTable');
+  let btn_ele=document.getElementById('addRow');
+  
+  btn_ele.addEventListener('click',function(){
+    let name = document.getElementById('nameInput').value;
+    let age = document.getElementById('ageInput').value;
+  
+    // 创建新的行和单元格
+    let row = document.createElement('tr');
+    let cell1 = document.createElement('td');
+    let cell2 = document.createElement('td');
+    let cell3 = document.createElement('td');
+  
+    // 创建删除按钮
+    let deleteButton = document.createElement('button');
+    deleteButton.innerHTML = '删除';
+    deleteButton.onclick = function() {
+      row.remove()
+    };
+  
+    cell1.textContent=name;
+    cell2.textContent=age;
+    cell3.append(deleteButton);
+
+    // 将单元格添加到行
+    row.append(cell1);
+    row.append(cell2);
+    row.append(cell3);
+  
+    // 将行添加到表格
+    table.append(row);
+    
+    // 添加点击事件到行
+    row.onclick = function() {
+      let newName = prompt('请输入新的姓名：', name);
+      let newAge = prompt('请输入新的年龄：', age);
+      if (newName && newAge) {
+        cell1.textContent = newName;
+        cell2.textContent = newAge;
+        sortTableByAge();
+      }
+    };
+  
+    // 按年龄排序行
+    sortTableByAge();
+  
+  })
+  
+  function sortTableByAge() {
+  let table = document.getElementById('myTable');
+  let rows = Array.from(table.rows).slice(1); // 转换为数组并排除表头行
+
+  rows.sort(function(a, b) {
+    let ageA = parseInt(a.cells[1].textContent); // 从行a的第二列获取年龄
+    let ageB = parseInt(b.cells[1].textContent); // 从行b的第二列获取年龄
+
+    return ageA - ageB; // 返回年龄之间的差值
+  });
+
+  // 按新的顺序添加行
+  for (let i = 0; i < rows.length; i++) {
+    table.appendChild(rows[i]);
+  }
+}
+
+</script>
+</html>
