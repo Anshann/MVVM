@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态改变文档内容</title>
+</head>
+<body>
+    <h1 id="title">初始标题</h1>
+    <button id="changeTitle">改变标题</button>
+    <div id="currentTime"></div>
+
+<script>
+// 获取需要操作的元素
+var titleElement = document.getElementById("title");
+var buttonElement = document.getElementById("changeTitle");
+var timeElement = document.getElementById("currentTime");
+
+// 为按钮添加点击事件监听器
+buttonElement.addEventListener("click", function() {
+    // 改变标题
+    titleElement.textContent = "欢迎来到我的网站";
+
+    // 获取当前时间
+    var now = new Date();
+
+    // 获取年、月和日
+    var year = now.getFullYear();
+    var month = now.getMonth() + 1; // JavaScript的月份从0开始计数，所以需要+1
+    var day = now.getDate();
+
+    // 格式化日期
+    var dateString = year + "/" + month + "/" + day;
+
+    // 获取小时、分钟和秒
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    // 格式化时间
+    var timeString = hours + ":" + minutes + ":" + seconds;
+
+    // 将日期和时间显示在元素上
+    timeElement.textContent = "当前时间：" + dateString + " " + timeString;
+});
+</script>
+
+</body>
+</html>
